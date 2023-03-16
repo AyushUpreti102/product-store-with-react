@@ -3,12 +3,13 @@
     height: fit-content;
     justify-self: center;
     padding: 0 5px;
-    height: 500px;
     overflow-y: hidden;
     text-overflow: ellipsis;
+    background-color: transparent;
+    border: none;
 }
 .cardImage {
     height: 250px;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }

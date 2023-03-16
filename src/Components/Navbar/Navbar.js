@@ -2,7 +2,7 @@ import React from "react";
 
 export const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-transparent">
       <div className="container-fluid">
         <div className="navbar-brand">
           Products
@@ -20,9 +20,6 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <div className="nav-link active" aria-current="page">
-              Home
-            </div>
             <div className="nav-link">
               About
             </div>

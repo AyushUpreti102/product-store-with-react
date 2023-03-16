@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import {Card} from '../Card/Card'
-import './Home.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNewProducts } from "../../features/fetchNewProducts";
+import { Card } from "../Card/Card";
+import "./Home.css";
 export const Home = () => {
-   const [products, setProduct] = useState([])
-   async function fetchProducts() {
-    const products = await fetch('https://fakestoreapi.com/products')
-    return products.json()
-   }
-   useEffect(() => {
-    fetchProducts().then(response => setProduct(response.map(el => el)))
-   }, [])
+  const newProducts = useSelector((state) => state.newProducts.newProducts);
+  const dispatch = useDispatch();
+
+  function fetchNewProducts() {
+    dispatch(getNewProducts());
+  }
+
+  useEffect(() => {
+    fetchNewProducts();
+  }, []);
+
   return (
-    <div className='products'>
-        {products.map(product => (
-            <Card key={product.id} details={product} />
+    <>
+      <h2>New Items</h2>
+      <div className="products">
+        {newProducts.map((product) => (
+          <Card key={product.id} details={product} />
         ))}
-    </div>
-  )
-}
+      </div>
+    </>
+  );
+};
