@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategories } from '../../features/fetchCategories'
+// import { useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
+  // const navigate = useNavigate()
+  const categories = useSelector((state) => state.categories.categories)
+  const dispatch = useDispatch()
+  const fetchCategoriesList = function () {
+    dispatch(fetchCategories())
+  }
+  // const changeRoute = (category) => {
+  //   navigate(`/category/${category}`)
+  // }
+  useEffect(() => {
+    fetchCategoriesList()
+  }, [])
   return (
-    <nav className="navbar navbar-expand-lg bg-transparent">
+    <nav className="navbar navbar-expand-lg bg-light bg-gradient mb-2">
       <div className="container-fluid">
-        <div className="navbar-brand">
-          Products
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsA3hoHbhVg2rur76WEOAi8Wb80d5w_92j5yvkNCQOQ&s" height="30px"></img>
+        <div className="navbar-brand mx-3">
+          Store
         </div>
         <button
           className="navbar-toggler"
@@ -20,9 +36,11 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <div className="nav-link">
-              About
-            </div>
+            {categories.map((category) => (
+              <div className="nav-link text-uppercase mx-2" role="button" key={category}>
+                {category}
+              </div>
+            ))}
           </div>
         </div>
       </div>
