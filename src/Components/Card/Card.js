@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import './Card.css'
 
 export const Card = ({details}) => {
+  const navigate = useNavigate()
+
+  const changeRoute = () => {
+    navigate(`/product/${details.category.split(' ').join('-')}/${details.id}`)
+  }
+
   return (
     <>
-      <div className="card">
+      <div className="card" role='button' onClick={() => changeRoute()}>
         <img src={details.image} className="card-img-top cardImage rounded" alt="productImage" />
         <div className="card-body">
           <h5 className="card-title">{details.title}</h5>
