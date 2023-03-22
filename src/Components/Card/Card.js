@@ -12,7 +12,7 @@ export const Card = ({details}) => {
   return (
     <>
       <div className="card" role='button' onClick={() => changeRoute()}>
-        <img src={details.image} className="card-img-top cardImage rounded" alt="productImage" />
+        <img src={details.image} className="card-img-top rounded" height="250px" width="100%" alt="productImage" />
         <div className="card-body">
           <h5 className="card-title">{details.title}</h5>
           <span>${details.price}</span>

@@ -1,49 +1,21 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCategories } from '../../features/fetchCategories'
-// import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { fetchCategories } from '../../reducers/productReducers'
 
 export const Navbar = () => {
-  // const navigate = useNavigate()
-  const categories = useSelector((state) => state.categories.categories)
   const dispatch = useDispatch()
-  const fetchCategoriesList = function () {
-    dispatch(fetchCategories())
-  }
-  // const changeRoute = (category) => {
-  //   navigate(`/category/${category}`)
-  // }
+
   useEffect(() => {
-    fetchCategoriesList()
+    dispatch(fetchCategories())
   }, [])
+
   return (
-    <nav className="navbar navbar-expand-lg bg-light bg-gradient mb-2">
-      <div className="container-fluid">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsA3hoHbhVg2rur76WEOAi8Wb80d5w_92j5yvkNCQOQ&s" height="30px"></img>
-        <div className="navbar-brand mx-3">
-          Store
-        </div>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            {categories.map((category) => (
-              <div className="nav-link text-uppercase mx-2" role="button" key={category}>
-                {category}
-              </div>
-            ))}
-          </div>
-        </div>
+    <nav className="navbar navbar-light bg-light">
+      <div className="d-flex align-items-center">
+        <img src="https://www.clipartmax.com/png/middle/353-3536273_svg-royalty-free-stock-stores-icon-png-svg-grocery-store-icon-png.png" height="30px" className="mx-2"></img>
+        <span className="navbar-brand mb-0 h1">Store</span>
       </div>
+      <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" height="30px" className="mx-4"></img>
     </nav>
   );
 };
