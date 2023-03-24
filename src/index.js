@@ -7,9 +7,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home } from './Pages/Home/Home';
-import { Product } from './Pages/Product/Product'
+import { Product } from './Pages/Product/Product';
 import { Category } from './Pages/Category/Category';
-// import { Error } from './Pages/Error/Error';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: 'category/:categoryName',
     element: <Category />
-  }
+  },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -16,6 +16,16 @@ export const fetchReleatedProducts = createAsyncThunk('category/getProductByCate
     return await fetch(`https://fakestoreapi.com/products/category/${category}`).then((result) => result.json())
 })
 
+export const login = createAsyncThunk('user/login', async ({ username, password }) => {
+    fetch('https://fakestoreapi.com/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    }).then(res => console.log(res.json())).catch(err => console.log(err))
+})
+
 const ProductStore = createSlice({
     name: 'ProductStore',
     initialState: {
@@ -27,19 +37,19 @@ const ProductStore = createSlice({
     reducers: {
         //
     },
-    extraReducers: {
-        [fetchNewProductsList.fulfilled]: (state, action) => {
+    extraReducers: function (builder) {
+        builder.addCase(fetchNewProductsList.fulfilled, (state, action) => {
             state.newProducts = action.payload
-        },
-        [fetchCategories.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchCategories.fulfilled, (state, action) => {
             state.categories = action.payload
-        },
-        [fetchProductByName.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchProductByName.fulfilled, (state, action) => {
             state.product = action.payload
-        },
-        [fetchReleatedProducts.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchReleatedProducts.fulfilled, (state, action) => {
             state.relatedProducts = action.payload
-        }
+        })
     }
 })
 
