@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from '../../reducers/productReducers'
 
-export const Modal = () => {
+export const LoginModal = () => {
     const dispatch = useDispatch()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    //Handle Form Submit
     const handleSubmit = function (e) {
         e.preventDefault()
-        console.log('called submit');
+
+        // Perform login in productReducers
         dispatch(login({ username, password }))
     }
     return (

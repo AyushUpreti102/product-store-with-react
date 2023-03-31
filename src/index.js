@@ -6,24 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home } from './Pages/Home/Home';
-import { Product } from './Pages/Product/Product';
-import { Category } from './Pages/Category/Category';
+import routes from './routes';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />
-  },
-  {
-    path: '/product/:category/:productID',
-    element: <Product />
-  },
-  {
-    path: 'category/:categoryName',
-    element: <Category />
-  },
-])
+// Router
+const router = createBrowserRouter(routes)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

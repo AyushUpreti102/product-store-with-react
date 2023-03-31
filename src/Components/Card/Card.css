@@ -1,10 +1,4 @@
-.card {
-    width: 90%;
-    height: fit-content;
-    justify-self: center;
-    padding: 0 5px;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-    background-color: transparent;
-    border: none;
+.card-image {
+    object-fit: contain;
+    height: 300px;
 }

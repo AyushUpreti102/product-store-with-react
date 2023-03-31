@@ -11,21 +11,24 @@ export const Product = () => {
     const { category, productID } = useParams()
 
     useEffect(() => {
+        //Fetch Product By Name in productReducers
         dispatch(fetchProductByName(productID))
+
+        //Fetch Related products by category in productReducers
         dispatch(fetchReleatedProducts(category.split('-').join(' ')))
     }, [])
 
     return (
-        <div className='product mx-3'>
+        <div className='mx-3'>
             <div className="row mt-4">
-                <div className="col col-12 col-lg-6 col-sm-12">
-                    <img src={product.image} width="100%" height="500px"></img>
+                <div className="col col-12 col-lg-6 col-sm-12 text-center">
+                    <img src={product.image} className="h-75 w-75"></img>
                 </div>
                 {product ? <div className="col d-flex flex-column gap-4">
                     <h1>{product.title}</h1>
                     <span>{product.description}</span>
                     <span className='text-uppercase'>Category - {product.category}</span>
-                    {/* {product.rating.rate ? <span>Rating: {product.rating.rate} / 5</span> : ''} */}
+                    {product.rating ? <span>Rating: {product.rating.rate} / 5</span> : ''}
                     <span>${product.price}</span>
                 </div> : 'No Such Product'}
             </div>
@@ -34,8 +37,8 @@ export const Product = () => {
                 {relatedProducts.map((relatedProduct) => {
                     if (product.title !== relatedProduct.title) {
                         return (
-                            <div className='col col-12 col-sm-6 col-lg-3' key={relatedProduct.id}>
-                                <Card details={relatedProduct}></Card>
+                            <div className='col col-12 col-sm-6 col-lg-3 mb-4' key={relatedProduct.id}>
+                                <Card key={relatedProduct.id} details={relatedProduct}></Card>
                             </div>
                         )
                     }

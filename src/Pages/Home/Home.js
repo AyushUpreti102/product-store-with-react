@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchNewProductsList } from '../../reducers/productReducers'
+import { fetchNewProductsList, fetchCategories } from '../../reducers/productReducers'
 import { Card } from "../../Components/Card/Card";
 import { useNavigate } from "react-router-dom";
 export const Home = () => {
@@ -8,27 +8,29 @@ export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+  //Navigate to category page
   const openCategoryPage = (category) => {
     navigate(`/category/${category.split(' ').join('-')}`)
   }
 
   useEffect(() => {
+    //Fetch Categories in productReducers in productReducers
+    dispatch(fetchCategories())
+
+    //Fetch New Product List in productReducers in productReducers
     dispatch(fetchNewProductsList())
   }, []);
 
   return (
     <>
-      <div className="d-flex mx-4 gap-4 mb-4">
+      <div className="d-flex mx-4 gap-4 mb-4 overflow-auto">
         {categories.map((category, index) => (
-          <div key={`${category}-${index}`}>
-            <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => openCategoryPage(category)}>{category}</button>
-          </div>
+          <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => openCategoryPage(category)}>{category}</button>
         ))}
-      </div><hr></hr>
-      <h2 className="mx-4">New Items</h2><hr></hr>
+      </div>
       <div className="row mx-3">
         {newProducts && newProducts.length ? newProducts.map((product) => (
-          <div className="col col-lg-3 col-sm-6 col-12" key={product.id}>
+          <div className="col col-lg-3 col-sm-6 col-12 mb-4" key={product.id}>
             <Card key={product.id} details={product} />
           </div>
         )) : 'No Products'}
