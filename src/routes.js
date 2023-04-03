@@ -1,6 +1,7 @@
 import { Home } from './Pages/Home/Home';
 import { Product } from './Pages/Product/Product';
 import { Category } from './Pages/Category/Category';
+import { Store } from './Pages/Store/Store'
 
 //Routes
 const routes = [
@@ -18,6 +19,11 @@ const routes = [
     {
         path: 'category/:categoryName',
         element: <Category />
+    },
+    //Store Page
+    {
+        path: '/store',
+        element: <Store />
     },
 ]
 

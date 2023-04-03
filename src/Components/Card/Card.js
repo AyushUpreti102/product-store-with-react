@@ -5,14 +5,9 @@ import './Card.css'
 export const Card = ({details}) => {
   const navigate = useNavigate()
 
-  //Navigate to product page
-  const changeRoute = () => {
-    navigate(`/product/${details.category.split(' ').join('-')}/${details.id}`)
-  }
-
   return (
     <>
-      <div className="card h-100 shadow-sm" onClick={changeRoute}>
+      <div className="card h-100 shadow-sm" onClick={() => navigate(`/product/${details.category.split(' ').join('-')}/${details.id}`)} role="button">
         <img src={details.image} className="card-img-top card-image" alt="product image" />
         <div className="card-body">
           <div className="clearfix mb-3">

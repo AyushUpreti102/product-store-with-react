@@ -1,40 +1,14 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchNewProductsList, fetchCategories } from '../../reducers/productReducers'
-import { Card } from "../../Components/Card/Card";
+import React from "react";
+import './Home.css'
 import { useNavigate } from "react-router-dom";
+
 export const Home = () => {
-  const { newProducts, categories } = useSelector((state) => state.ProductStoreState)
-  const dispatch = useDispatch();
   const navigate = useNavigate()
-
-  //Navigate to category page
-  const openCategoryPage = (category) => {
-    navigate(`/category/${category.split(' ').join('-')}`)
-  }
-
-  useEffect(() => {
-    //Fetch Categories in productReducers in productReducers
-    dispatch(fetchCategories())
-
-    //Fetch New Product List in productReducers in productReducers
-    dispatch(fetchNewProductsList())
-  }, []);
-
   return (
-    <>
-      <div className="d-flex mx-4 gap-4 mb-4 overflow-auto">
-        {categories.map((category, index) => (
-          <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => openCategoryPage(category)}>{category}</button>
-        ))}
-      </div>
-      <div className="row mx-3">
-        {newProducts && newProducts.length ? newProducts.map((product) => (
-          <div className="col col-lg-3 col-sm-6 col-12 mb-4" key={product.id}>
-            <Card key={product.id} details={product} />
-          </div>
-        )) : 'No Products'}
-      </div>
-    </>
+    <div className="landingBox position-relative">
+      <img src="https://voicebot.ai/wp-content/uploads/2019/09/amazon-alexa-event-sept-2019.jpg" alt="landing page image" className="position-absolute h-100 w-100"></img>
+      <h1 className="welcomeMessage position-absolute start-50 translate-middle mb-5">Welcome to the Store</h1>
+      <button type="button" className="shopNowButton btn btn-primary btn-lg position-absolute start-50 translate-middle rounded-pill" onClick={() => navigate('/store')}>Shop Now</button>
+    </div>
   );
 };
