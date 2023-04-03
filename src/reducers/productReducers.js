@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 //Async thunks for async calls from server -------------------------------------------------------------------->
 
-//Fetch New Product List in Home Page
+//Fetch New Product List in Store Page
 export const fetchNewProductsList = createAsyncThunk('newproducts/getNewProducts', async () => {
     return await fetch('https://fakestoreapi.com/products').then((result) => result.json())
 })
 
-//Fetch Product Categories in Home Page 
+//Fetch Product Categories in Categories Page 
 export const fetchCategories = createAsyncThunk('categories/getCategories', async () => {
     return await fetch('https://fakestoreapi.com/products/categories').then((result) => result.json())
 })
