@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { fetchCategories } from '../../reducers/productReducers'
+import { useDispatch, useSelector } from "react-redux";
 
 export const Navbar = () => {
-  const style = {
-    'zIndex': '999'
-  }
-  
+  const { categories } = useSelector((state) => state.ProductStoreState)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //Fetch Categories in productReducers in productReducers
+    dispatch(fetchCategories())
+  }, [])
   return (
-    <nav className="navbar navbar-light w-100 position-absolute top-0" style={style}>
-      <div className="d-flex align-items-center">
-        <span className="navbar-brand mb-0 h1 mx-4">Store</span>
+    <nav className="navbar navbar-light bg-light">
+      <div className="container-fluid">
+        <Link to={'/store'} style={{ textDecoration: 'none', color: 'black', fontSize: '20px' }}>Store</Link>
+        <form className="d-flex input-group w-50">
+          <input
+            type="search"
+            className="form-control rounded"
+            placeholder="Search for Categories"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <button type="button" class="btn border border-2">
+            <span className="input-group-text border-0" id="search-addon">
+              <i className="fas fa-search"></i>
+            </span>
+          </button>
+        </form>
+        <Link to={'/login'}>
+          <span className="input-group-text border-0" id="search-addon">
+            <i className="fa-solid fa-user"></i>
+          </span>
+        </Link>
       </div>
-      <button type="button" className="btn" >
-        <img src='https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png' height="30px"></img>
-      </button>
     </nav>
   );
 };
-
-//onClick={() => navigate('/login')}

@@ -5,18 +5,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import routes from './routes';
-
-// Router
-const router = createBrowserRouter(routes)
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Home } from './Pages/Home/Home';
+import { Product } from './Pages/Product/Product';
+import { Category } from './Pages/Category/Category';
+import { Store } from './Pages/Store/Store'
+import { Login } from './Pages/Login/Login'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
-      <RouterProvider router={router}></RouterProvider>
+      <Router>
+        <App />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/product/:category/:productID' element={<Product />}></Route>
+          <Route path='category/:categoryName' element={<Category />}></Route>
+          <Route path='/store' element={<Store />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+        </Routes>
+      </Router>
     </Provider>
   </React.StrictMode>
 );
