@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchProductByName } from '../../reducers/productReducers'
+import { fetchProductByID } from '../../reducers/productReducers'
 import { fetchReleatedProducts } from '../../reducers/productReducers'
 import './Product.css'
 import { Card } from '../../Components/Card/Card'
@@ -11,11 +11,12 @@ export const Product = () => {
     const dispatch = useDispatch()
     const { category, productID } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const [index, setIndex] = useState(0)
 
     //Will work on first render and when the value of productID changes
     useEffect(() => {
         //Fetch Product By Name in productReducers
-        dispatch(fetchProductByName(productID))
+        dispatch(fetchProductByID(productID))
 
         //Fetch Related products by category in productReducers
         dispatch(fetchReleatedProducts(category.split('-').join(' ')))
@@ -23,10 +24,17 @@ export const Product = () => {
 
     return (
         <div className='my-5'>
-            <div className="border p-3 main-section bg-white">
+            <div className="border p-3 bg-white">
                 <div className="row m-0">
-                    <div className="col-lg-4 left-side-product-box pb-3">
-                        <img src={product.image} alt={`${product.title}-image`} className="border p-3 h-100 w-100" />
+                    <div className="col-lg-4 left-side-product-box pb-3" style={{ marginBottom: '100px' }}>
+                        <img src={product.images ? product.images[index] : ''} alt={`${product.title}-image`} className="border p-3 h-100 w-100" />
+                        <div className="sub-img">
+                            {product.images ? product.images.map((image, index) => {
+                                if (index < 3) {
+                                    return <img key={`${image}/images`} src={image} className="border p-2" onClick={() => setIndex(index)} />
+                                }
+                            }) : 'No Extra Images'}
+                        </div>
                     </div>
                     <div className="col-lg-8">
                         <div className="right-side-pro-detail border p-3 m-0">
@@ -78,7 +86,7 @@ export const Product = () => {
                                 </div>
                             )
                         }
-                    })} 
+                    })}
                 </div>
             </div>
         </div>

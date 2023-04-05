@@ -3,6 +3,11 @@
     height: 500px;
 }
 
+.left-side-product-box .sub-img img {
+    margin-top: 5px;
+    width: 83px;
+    height: 100px;
+}
 .right-side-pro-detail span {
     font-size: 15px;
 }

@@ -4,41 +4,22 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 //Fetch New Product List in Store Page
 export const fetchNewProductsList = createAsyncThunk('newproducts/getNewProducts', async () => {
-    return await fetch('https://fakestoreapi.com/products').then((result) => result.json())
+    return await fetch('https://dummyjson.com/products').then((result) => result.json())
 })
 
 //Fetch Product Categories in Categories Page 
 export const fetchCategories = createAsyncThunk('categories/getCategories', async () => {
-    return await fetch('https://fakestoreapi.com/products/categories').then((result) => result.json())
+    return await fetch('https://dummyjson.com/products/categories').then((result) => result.json())
 })
 
 //Fetch Product By Name in Product Page
-export const fetchProductByName = createAsyncThunk('product/getProductByName', async (productID) => {
-    return await fetch(`https://fakestoreapi.com/products/${productID}`).then((result) => result.json())
+export const fetchProductByID = createAsyncThunk('product/getProductByName', async (productID) => {
+    return await fetch(`https://dummyjson.com/products/${productID}`).then((result) => result.json())
 })
 
 //Fetch Related Products By Same Categories In Product Page and Category Page
 export const fetchReleatedProducts = createAsyncThunk('category/getProductByCategory', async (category) => {
-    return await fetch(`https://fakestoreapi.com/products/category/${category}`).then((result) => result.json())
-})
-
-//Use this api to get all users
-// export const fetchAllUsers = createAsyncThunk('user/fetchAllUsers', async () => {
-//     return await fetch(`https://dummyjson.com/users`).then((result) => result.json())
-// })
-
-//Login User In LoginModal Component
-export const login = createAsyncThunk('user/login', async ({ username, password }) => {
-    //Returns Token
-    return await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            username,
-            password,
-            // expiresInMins: 60, // optional
-        })
-    }).then(res => res.json()).catch(err => console.log(err))
+    return await fetch(`https://dummyjson.com/products/category/${category}`).then((result) => result.json())
 })
 
 // -------------------------------------------------------------------------------------------------------------->
@@ -60,20 +41,16 @@ const ProductStore = createSlice({
     //Extra reducers for handling async mutations
     extraReducers: function (builder) {
         builder.addCase(fetchNewProductsList.fulfilled, (state, action) => {
-            state.newProducts = action.payload
+            state.newProducts = action.payload.products
         })
         builder.addCase(fetchCategories.fulfilled, (state, action) => {
             state.categories = action.payload
         })
-        builder.addCase(fetchProductByName.fulfilled, (state, action) => {
+        builder.addCase(fetchProductByID.fulfilled, (state, action) => {
             state.product = action.payload
         })
         builder.addCase(fetchReleatedProducts.fulfilled, (state, action) => {
-            state.relatedProducts = action.payload
-        })
-        builder.addCase(login.fulfilled, (state, action) => {
-            console.log('login payload', action.payload);
-            state.token = action.payload
+            state.relatedProducts = action.payload.products
         })
     }
 })

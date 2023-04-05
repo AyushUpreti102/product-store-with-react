@@ -14,7 +14,7 @@ export const Category = () => {
         dispatch(fetchReleatedProducts(categoryName.split('-').join(' ')))
     }, [])
     return (
-        <div className='my-5'>
+        <div>
             <h1 className='my-4 mx-4'>Explore {categoryName.split('-').join(' ')}</h1>
             <div className='row mx-3'>
                 {relatedProducts.map((relatedProduct) => (
