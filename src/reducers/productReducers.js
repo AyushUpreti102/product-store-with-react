@@ -22,14 +22,21 @@ export const fetchReleatedProducts = createAsyncThunk('category/getProductByCate
     return await fetch(`https://fakestoreapi.com/products/category/${category}`).then((result) => result.json())
 })
 
+//Use this api to get all users
+// export const fetchAllUsers = createAsyncThunk('user/fetchAllUsers', async () => {
+//     return await fetch(`https://dummyjson.com/users`).then((result) => result.json())
+// })
+
 //Login User In LoginModal Component
 export const login = createAsyncThunk('user/login', async ({ username, password }) => {
     //Returns Token
-    return await fetch('https://fakestoreapi.com/auth/login', {
+    return await fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            username: username,
-            password: password
+            username,
+            password,
+            // expiresInMins: 60, // optional
         })
     }).then(res => res.json()).catch(err => console.log(err))
 })
