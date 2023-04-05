@@ -4,7 +4,7 @@ export const Navbar = () => {
   const style = {
     'zIndex': '999'
   }
-
+  
   return (
     <nav className="navbar navbar-light w-100 position-absolute top-0" style={style}>
       <div className="d-flex align-items-center">
