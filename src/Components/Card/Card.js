@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Card.css'
 
-export const Card = ({details}) => {
-  const navigate = useNavigate()
-
+export const Card = ({ details }) => {
   return (
-    <>
-      <div className="card h-100 shadow-sm" onClick={() => navigate(`/product/${details.category.split(' ').join('-')}/${details.id}`)} role="button">
+    <Link to={`/product/${details.category.split(' ').join('-')}/${details.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+      <div className="card h-100 shadow-sm" role="button">
         <img src={details.image} className="card-img-top card-image" alt="product image" />
         <div className="card-body">
           <div className="clearfix mb-3">
@@ -17,6 +15,6 @@ export const Card = ({details}) => {
           <h5 className="card-title">{details.title}</h5>
         </div>
       </div>
-    </>
+    </Link>
   );
 };

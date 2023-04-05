@@ -44,7 +44,7 @@ export const Product = () => {
                                     <hr className="m-0 pt-2 mt-2" />
                                 </div>
                                 <div className="col-lg-12">
-                                    <p className="tag-section"><strong>Category : </strong><a href="">{product.category}</a></p>
+                                    <p className="tag-section"><strong>Category : </strong><a href="#">{product.category}</a></p>
                                 </div>
                                 <div className="col-lg-12">
                                     <h6>Quantity :</h6>
