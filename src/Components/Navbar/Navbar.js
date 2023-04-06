@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchCategories } from '../../reducers/productReducers'
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,6 +8,12 @@ export const Navbar = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('')
   const [suggestions, setSuggestions] = useState([])
+  const navigate = useNavigate()
+  const performSearch = function (suggestion) {
+    navigate(`/category/${suggestion}`)
+    setSuggestions([])
+    setSearch(suggestion)
+  }
 
   useEffect(() => {
     //Fetch Categories in productReducers in productReducers
@@ -50,7 +56,7 @@ export const Navbar = () => {
           </form>
           {suggestions.length ? <div className="suggestions border border-1 position-absolute p-2 bg-white rounded" style={{ width: '87%', zIndex: '999' }}>
             {suggestions.map((suggestion) => (
-              <div key={suggestion} role="button" onClick={() => setSearch(suggestion)}>{suggestion}</div>
+              <div key={suggestion} role="button" onClick={() => performSearch(suggestion)}>{suggestion}</div>
             ))}
           </div> : ''}
         </div>

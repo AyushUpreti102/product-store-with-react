@@ -22,12 +22,14 @@ export const Store = () => {
                     <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => navigate(`/category/${category}`)} style={{ fontSize: '12px' }}>{category}</button>
                 ))}
             </div>
-            <div className="row mx-3">
-                {newProducts && newProducts.length ? newProducts.map((product) => (
-                    <div className="col col-lg-3 col-sm-6 col-12 mb-4" key={product.id}>
-                        <Card key={product.id} details={product} />
+            <div className="px-2">
+                <div className="row justify-content-center mb-3">
+                    <div className="col-md-12 col-xl-10">
+                        {newProducts && newProducts.length ? newProducts.map((product) => (
+                            <Card key={product.id} details={product} />
+                        )) : 'No Products'}
                     </div>
-                )) : 'No Products'}
+                </div>
             </div>
         </>
     )
