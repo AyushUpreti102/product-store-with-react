@@ -77,16 +77,14 @@ export const Product = () => {
                         <h4>More Products</h4>
                     </div>
                 </div>
-                <div className="row mt-3 p-0 text-center pro-box-section">
-                    {relatedProducts.map((relatedProduct) => {
-                        if (product.title !== relatedProduct.title) {
-                            return (
-                                <div key={relatedProduct.id} className="col-lg-3 col-sm-6 pb-2">
-                                    <Card key={relatedProduct.id} details={relatedProduct}></Card>
-                                </div>
-                            )
-                        }
-                    })}
+                <div className="px-2">
+                    <div className="row justify-content-center mb-3">
+                        <div className="col-md-12 col-xl-10">
+                            {relatedProducts && relatedProducts.length ? relatedProducts.map((product) => (
+                                <Card key={product.id} details={product} />
+                            )) : 'No Products'}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
