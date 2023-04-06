@@ -11,7 +11,7 @@ export const Category = () => {
 
     useEffect(() => {
         //Fetch Related products by category in productReducers
-        dispatch(fetchReleatedProducts(categoryName.split('-').join(' ')))
+        dispatch(fetchReleatedProducts(categoryName))
     }, [])
     return (
         <div>
