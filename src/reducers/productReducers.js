@@ -3,8 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 //Async thunks for async calls from server -------------------------------------------------------------------->
 
 //Fetch New Product List in Store Page
-export const fetchNewProductsList = createAsyncThunk('newproducts/getNewProducts', async () => {
-    return await fetch('https://dummyjson.com/products').then((result) => result.json())
+export const fetchNewProductsList = createAsyncThunk('newproducts/getNewProducts', async (page) => {
+    return await fetch(`https://dummyjson.com/products?limit=10&skip=${page * 10}`).then((result) => result.json())
 })
 
 //Fetch Product Categories in Categories Page 
