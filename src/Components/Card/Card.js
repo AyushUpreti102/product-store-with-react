@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import './Card.css'
 
 export const Card = ({ details }) => {
+  const style = {
+    backgroundImage: `url(${details.images[0]})`,
+    backgroundRepeat: 'no-repeat',
+    height: '200px',
+    backgroundPositionX: 'center',
+    backgroundSize: 'contain'
+  }
   return (
     <Link to={`/product/${details.category.split(' ').join('-')}/${details.id}`} style={{ textDecoration: 'none', color: 'black' }}>
       <div className="card shadow-0 border rounded-3 mb-2">
@@ -10,8 +17,7 @@ export const Card = ({ details }) => {
           <div className="row">
             <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
               <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                <img src={details.images[0]}
-                  className="w-100" />
+                <div className="w-100" style={style}></div>
                 <div className="hover-overlay">
                   <div className="mask" style={{ backgroundColor: `rgba(253, 253, 253, 0.15)` }}></div>
                 </div>
