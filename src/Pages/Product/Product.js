@@ -19,7 +19,7 @@ export const Product = () => {
         dispatch(fetchProductByID(productID))
 
         //Fetch Related products by category in productReducers
-        dispatch(fetchReleatedProducts(category.split('-').join(' ')))
+        dispatch(fetchReleatedProducts(category))
     }, [productID])
 
     return (

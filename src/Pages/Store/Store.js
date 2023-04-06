@@ -19,7 +19,7 @@ export const Store = () => {
         <>
             <div className="d-flex mx-4 gap-4 mb-4 overflow-auto scrollBar">
                 {categories.map((category, index) => (
-                    <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => navigate(`/category/${category.split(' ').join('-')}`)} style={{ fontSize: '12px' }}>{category}</button>
+                    <button key={`${category}-${index}`} type="button" className="btn btn-light text-uppercase mt-4" onClick={() => navigate(`/category/${category}`)} style={{ fontSize: '12px' }}>{category}</button>
                 ))}
             </div>
             <div className="row mx-3">
